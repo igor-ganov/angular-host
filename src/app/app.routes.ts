@@ -1,6 +1,6 @@
 import type { Routes } from '@angular/router';
 import { About } from './about/about';
-import { featureMatcher } from './feature/feature.matcher';
+import { featureMatcher } from './feature/feature.config';
 import { FeatureHost } from './feature/feature-host';
 import { Home } from './home/home';
 import { NotFound } from './not-found/not-found';

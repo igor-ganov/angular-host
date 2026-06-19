@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FEATURE_BASE } from './feature.config';
 
 /**
  * The Angular side of the delegation boundary. It renders the `<feature-app>`
- * custom element and passes the base path it owns. From here on, the web
- * component's own router takes over every sub-path under `/feature`.
+ * custom element and *injects* the mount path via a property binding — the web
+ * component never hard-codes it. From here on, the element's own router takes
+ * over every sub-path under `FEATURE_BASE`.
  *
  * CUSTOM_ELEMENTS_SCHEMA lets the template reference a tag Angular does not know.
  */
@@ -13,11 +15,11 @@ import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@ang
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <p class="hint">
-      Angular matched <code>/feature/**</code> to a single route and delegated the whole subtree
-      below to the web component. Use its navigation — the Angular route never changes and this
-      component is never re-created.
+      Angular matched <code>{{ base }}/**</code> to a single route and delegated the whole
+      subtree below to the web component. Use its navigation — the Angular route never
+      changes and this component is never re-created.
     </p>
-    <feature-app base="/feature"></feature-app>
+    <feature-app [base]="base"></feature-app>
   `,
   styles: `
     :host { display: block; }
@@ -25,4 +27,6 @@ import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@ang
     code { background: #eee; padding: 1px 6px; border-radius: 6px; }
   `,
 })
-export class FeatureHost {}
+export class FeatureHost {
+  protected readonly base = FEATURE_BASE;
+}
