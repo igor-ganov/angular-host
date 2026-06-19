@@ -12,7 +12,6 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
         <a routerLink="/about" routerLinkActive="active">About</a>
         <a routerLink="/feature" routerLinkActive="active">Feature (web component)</a>
-        <a routerLink="/feature/inbox">Deep-link → /feature/inbox</a>
       </nav>
     </header>
     <main>
